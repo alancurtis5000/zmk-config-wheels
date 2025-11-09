@@ -44,7 +44,10 @@
 
     PC_layer {
             label = "PC";
-            sensor-bindings = < &inc_dec_kp C_VOL_UP C_VOL_DN >;
+            sensor-bindings = < 
+              &inc_dec_kp C_VOL_UP C_VOL_DN 
+              &inc_dec_kp C_VOL_UP C_VOL_DN 
+              >;
             bindings = <
               &none            &lt PC_VDesk Q   &hm LSHIFT W     &hm LALT E       &hm LCTRL R      &hm LGUI T       &hm RGUI Y       &hm RCTRL U      &hm RALT I       &hm RSHIFT O     &kp P            &none 
               &none            &lt PC_App A     &lt PC_Tabs S    &lt Numbers D    &lt Sym_Right F  &kp G            &kp H            &lt Sym_Left J   &kp K            &kp L            &mo PC_Nav       &none 

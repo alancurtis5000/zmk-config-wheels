@@ -46,7 +46,7 @@
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder01 &left_encoder02>;
-        triggers-per-rotation = <20>;
+        triggers-per-rotation = <60>;
     };
     //// Mouse wheel encoder end ////
 
