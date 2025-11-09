@@ -24,7 +24,7 @@
         zmk,physical-layout = &foostan_corne_6col_layout;
     };
      // Mouse wheel encoder start //
-     encoder: encoder {
+     encoder01: encoder {
         compatible = "alps,ec11";
         a-gpios = <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -32,9 +32,23 @@
         status = "okay";
     };
 
+    encoder02: encoder {
+        compatible = "alps,ec11";
+        a-gpios = <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+        status = "okay";
+    };
+
+
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&encoder>;
+        sensors 
+            = <&encoder01>
+            , <&encoder02>
+            ;
+            
+        // triggers-per-rotation increase or decrease mouse wheel sensitivity
         triggers-per-rotation = <40>;
     };
     // Mouse wheel encoder end //
