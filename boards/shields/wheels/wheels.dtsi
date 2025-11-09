@@ -22,6 +22,39 @@
         zephyr,display = &oled;
         zmk,kscan = &kscan0;
         zmk,physical-layout = &foostan_corne_6col_layout;
+        zmk,sensors = &sensors;
+    };
+
+
+    /* Define a label for your encoder, e.g., "encoder_1" */
+    encoder_1: encoder_1 {
+        compatible = "zmk,sensor-device-encoder";
+        /* Replace PIN_A and PIN_B with your actual GPIO pin numbers */
+        label = "My Rotary Encoder";
+        gpios
+            = <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>
+            , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>
+            ;
+        status = "okay";
+        /* 
+          Steps per period: 
+          - 1: Full-period mode (1 pulse per detent)
+          - 2: Half-period mode (2 pulses per detent)
+          - 4: Quarter-period mode (4 pulses per detent)
+          Typically you will use 1 or 2.
+        */
+        zephyr,steps-per-period = <1>; 
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder_1>; /* List all your encoder labels here, separated by spaces */
+        /* 
+          Triggers per rotation: 
+          How many times the keymap behavior is triggered for one full rotation. 
+          This value depends on your specific encoder's datasheet (e.g., 20 pulses per rotation is common). 
+        */
+        triggers-per-rotation = <20>; 
     };
 
     default_transform: keymap_transform_0 {
